@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Savings Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=PT+Serif&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+  <!-- start inputs -->
+  <div id="inputContainer">
+    <div id="formContainer" class="boxShadow">
+      <div class="info">
+        <h1>Welcome to The Australian Personal Finance Calculator</h1>
+      </div>
+      <form class="">
+        <div class="heading">
+          <div class="colorbox">1</div>
+          <h2>Your Income</h2>
+        </div>
+        <div class="questions">
+          <div class="formLine">
+            <p>Pre-Tax Income</p>
+            <p class="dollar">$</p>
+            <input type="number" name="income" id="income" value="750" />
+            <select tabindex="-1" name="incomeFreq" id="incomeFreq">
+              <option value="weekly">Weekly</option>
+              <option value="fortnightly">Fortnightly</option>
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="heading">
+          <div class="colorbox">2</div>
+          <h2>Your Weekly Expenses</h2>
+        </div>
+        <div class="questions">
+          <div class="formLine">
+            <p>Food/Household</p>
+            <p class="dollar">$</p>
+            <input type="number" name="food" id="food" value="200" />
+            <select tabindex="-1" name="foodFreq" id="foodFreq">
+              <option value="weekly">Weekly</option>
+              <option value="fortnightly">Fortnightly</option>
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+          <div class="formLine">
+            <p>Rent/Mortgage</p>
+            <p class="dollar">$</p>
+            <input type="number" name="rent" id="rent" value="179" />
+            <select tabindex="-1" name="rentFreq" id="rentFreq">
+              <option value="weekly">Weekly</option>
+              <option value="fortnightly">Fortnightly</option>
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+
+          <div class="formLine">
+            <p>Bills</p>
+            <p class="dollar">$</p>
+            <input type="number" name="bills" id="bills" value="50" />
+            <select tabindex="-1" name="billsFreq" id="billsFreq">
+              <option value="weekly">Weekly</option>
+              <option value="fortnightly">Fortnightly</option>
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+          <div class="formLine">
+            <p>Spending</p>
+            <p class="dollar">$</p>
+            <input type="number" name="spending" id="spending" value="200" />
+            <select tabindex="-1" name="spendingFreq" id="spendingFreq">
+              <option value="weekly">Weekly</option>
+              <option value="fortnightly">Fortnightly</option>
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="heading">
+          <div class="colorbox">3</div>
+          <h2>Current Finances</h2>
+        </div>
+
+        <div class="questions">
+          <div class="formLine">
+            <p>Current Savings</p>
+            <p class="dollar">$</p>
+            <input type="number" name="currentSavings" id="currentSavings" value="5000" />
+            <div class="spacer"></div>
+          </div>
+          <div class="formLine">
+            <p>Contributions</p>
+            <p class="dollar">$</p>
+            <input type="number" name="contributions" id="contributions" value="100" />
+            <select tabindex="-1" name="contributionsFreq" id="contributionsFreq">
+              <option value="weekly">Weekly</option>
+              <option value="fortnightly">Fortnightly</option>
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+        </div>
+
+        <button onclick="calc()" id="button">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Start graphs  -->
+  <div class="page full">
+    <div id="graphs">
+      <div class="graph costBreakdown boxShadow roundBorder">
+        <h3>Weekly Cost Breakdown</h3>
+        <div id="PieWrapper">
+          <!-- breakdown pie chart -->
+          <div id="piechart" class="transparent fullWidth" style="height: 250px; width: 250px;"></div>
+          <div class="PieText">
+            <p id="breakdownFood"></p>
+            <p id="breakdownBills"></p>
+            <p id="breakdownRent"></p>
+            <p id="breakdownSpending"></p>
+            <p id="breakdownUnallow"></p>
+          </div>
+        </div>
+      </div>
+      <div class="graph netPayBreakdown boxShadow roundBorder">
+        <div class="graphHeading">
+          <select tabindex="-1" name="netPayFreq" id="netPayFreq" class="netPayFreq" dir="rtl"
+            onchange="netPaySwitcher(this.value)">
+            <option value="weekly">Weekly</option>
+            <option value="fortnightly">Fortnightly</option>
+            <option value="monthly">Monthly</option>
+            <option value="yearly" selected>Yearly</option>
+          </select>
+          <h3>Net Pay Breakdown</h3>
+        </div>
+        <div id="PieWrapper">
+          <div id="taxPiechart" class="transparent fullWidth" style="height: 250px; width: 250px;"></div>
+          <div class="PieText">
+            <p id="taxPieTextTax"></p>
+            <p id="taxPieTextNet"></p>
+            <p id="taxPieTextAnnual"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="graph projectedSavings boxShadow roundBorder">
+        <h3>Projected Savings</h3>
+        <div id="curve_chart" class="transparent fullWidth" style="height: 400px; width: 800px;"></div>
+      </div>
+    </div>
+  </div>
+  <script src="./app.js"></script>
+</body>
+
+</html>

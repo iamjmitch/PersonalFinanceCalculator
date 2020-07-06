@@ -1,0 +1,361 @@
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: black;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'PT Serif', serif !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Input Specific CSS */
+/* Remove input focus glow */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+/* Remove up/down button on number input */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* Page CSS */
+#inputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background: #ff7a64;
+}
+
+.info {
+  width: 500px;
+  background: white;
+  color: black;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.info h1 {
+  color: black !important;
+  text-align: center;
+  margin-top: 15px;
+}
+
+#formContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border: 2px solid #383333;
+  border-radius: 24px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 10px;
+  color: white !important;
+}
+
+.heading h2 {
+  color: white !important;
+}
+
+.colorbox {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ff7a64;
+  margin-right: 10px;
+  color: white;
+  font-weight: bolder;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px 15px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: white !important;
+  background: #383333;
+}
+
+.boxShadow {
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+.questions {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0 35px 0;
+  color: white !important;
+}
+
+.formLine {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  color: white !important;
+}
+
+.spacer {
+  width: 100px;
+  margin-left: 10px;
+}
+
+.dollar {
+  width: 15px !important;
+  margin-right: 0 !important;
+  color: white !important;
+}
+
+.formLine p {
+  width: 115px;
+  line-height: 30px;
+  margin-top: 5px;
+  text-align: right;
+  margin-right: 5px;
+  font-size: 17px;
+  color: white !important;
+}
+
+.singleLine {
+  flex-direction: column !important;
+}
+
+input {
+  padding: 0 10px;
+  width: 150px;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.33);
+  font-size: 17px;
+  line-height: 26px;
+  margin-top: 5px;
+  color: white !important;
+}
+
+select {
+  background: #383333;
+  border: none;
+  font-size: 17px;
+  line-height: 26px;
+  margin-top: 11px;
+  margin-left: 10px;
+  color: white !important;
+}
+option {
+  background: #383333;
+  color: white !important;
+}
+
+button#button {
+  border: 2px solid white;
+  background: transparent;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+  width: 122px;
+  align-self: flex-end;
+  transition: 0.2s;
+  font-weight: bolder;
+  color: white !important;
+}
+
+button#button:hover {
+  background: #ff7a64;
+  cursor: pointer;
+  color: white;
+}
+
+#curve_chart {
+  margin: 0 auto;
+}
+
+.page {
+  width: 100%;
+}
+.grey {
+  background-color: #383333;
+}
+
+/* Grid Start */
+#graphs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, minmax(300px 600px));
+  column-gap: 20px;
+  row-gap: 20px;
+  justify-content: center;
+  display: none;
+  max-width: 1200px;
+  margin: 20px auto;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  grid-template-areas:
+    'costBreakdown costBreakdown netPayBreakdown netPayBreakdown'
+    'projected projected projected projected ';
+}
+
+.projectedSavings {
+  grid-area: projected;
+}
+
+.netPayBreakdown {
+  grid-area: netPayBreakdown;
+}
+
+.costBreakdown {
+  grid-area: costBreakdown;
+}
+
+.graph {
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.graphHeading {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.graphHeading select,
+.graphHeading option {
+  color: black !important;
+  background: white;
+  margin: 0;
+  font-family: 'PT Serif', serif !important;
+  width: unset;
+}
+
+.graphHeading select {
+  font-weight: bolder;
+  text-align: right;
+  font-size: 20px;
+}
+
+.graph h3 {
+  color: black;
+  text-align: center;
+  font-size: 20px;
+}
+
+.small {
+  width: 300px;
+  height: 300px;
+}
+
+.wide {
+  width: 500px;
+  height: 400px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.halfWidth {
+  width: 50%;
+}
+
+.graphRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.margin20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.roundBorder {
+  border: 1px solid #00000040;
+  border-radius: 20px;
+}
+
+.left {
+  margin-right: 10px;
+}
+
+.right {
+  margin-left: 10px;
+}
+
+.transparent {
+  background: transparent;
+}
+
+.white {
+  background: white;
+}
+
+.netPayFreq {
+  width: 100px;
+  align-self: center;
+  color: white;
+}
+
+#PieWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.PieText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.PieText p {
+  color: black !important;
+  line-height: 25px;
+}
+
+.PieText p b {
+  color: black !important;
+  font-weight: bolder;
+}
