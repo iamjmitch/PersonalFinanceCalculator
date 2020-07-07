@@ -47,6 +47,7 @@ input[type='number'] {
   width: 100%;
   min-height: 100vh;
   background: #ff7a64;
+  padding: 30px;
 }
 
 .info {
@@ -199,6 +200,66 @@ button#button:hover {
   cursor: pointer;
   color: white;
 }
+
+/* Widget CSS */
+#widgetContainer {
+  width: 100%;
+  background: #383333;
+}
+
+#widget {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  max-width: 1200px;
+  margin: 0 auto;
+ grid-column-gap: 10px;
+}
+
+#widget div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ffffff0f;
+  box-shadow: 0px 0px 3px 1px #ffffff12;
+  margin: 10px 0;
+  background: #3a3737;
+  border-radius: 5px;
+  
+}
+
+/* everything needs to be !important for it to work */
+.dollarWidget {
+  border: unset!important;
+  box-shadow: unset!important;
+  display: flex;
+  flex-direction: row!important;
+  margin: 0!important;
+  padding: 0!important;
+}
+
+.dollarW {
+  align-self: flex-start;
+  font-size: 22px!important;
+  color: white!important;
+  margin-top: 2px;
+}
+
+#widget div p{
+  color: #e0d8c587;
+  font-size: 15px;
+}
+
+#incomeWidgetText, #netPayWidgetText, #taxPaidWidgetText, #expensesWidgetText, #unallowcatedWidgetText {
+  color: #fffffff5!important;
+  font-size: 30px!important;
+  font-weight: lighter;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+/* Chart CSS */
 
 #curve_chart {
   margin: 0 auto;
