@@ -1,21 +1,86 @@
-//Get Elements
+var finances = {};
+
+function updateFinances() {
+  //weekly
+  finances.weeklyIncome = getWeeklyCost("#income", "#incomeFreq");
+  finances.weeklyTax = calcTax(income) / 52;
+  finances.weeklyNet = finances.weeklyIncome - finances.weeklyTax;
+  finances.weeklyFood = getWeeklyCost("#food", "#foodFreq");
+  finances.weeklyBills = getWeeklyCost("#bills", "#billsFreq");
+  finances.weeklyRent = getWeeklyCost("#rent", "#rentFreq");
+  finances.weeklySpending = getWeeklyCost("#spending", "#spendingFreq");
+  finances.weeklyUnspent = finances.weeklyNet - (finances.weeklyFood + finances.weeklyBills + finances.weeklyRent + finances.weeklySpending)
+  //fortnightly
+  finances.fortnightlyIncome = finances.weeklyIncome * 2;
+  finances.fortnightlyTax = finances.weeklyTax * 2;
+  finances.fortnightlyNet = finances.fortnightlyIncome - finances.fortnightlyTax;
+  finances.fortnightlyFood = finances.weeklyFood * 2;
+  finances.fortnightlyBills = finances.weeklyBills * 2;
+  finances.fortnightlyRent = finances.weeklyRent * 2;
+  finances.fortnightlySpending = finances.weeklySpending * 2;
+  finances.fortnightlyUnspent = finances.fortnightlyNet - (finances.fortnightlyFood + finances.fortnightlyBills + finances.fortnightlyRent + finances.fortnightlySpending)
+  //monthly
+  finances.monthlyIncome = (finances.weeklyIncome * 52) / 12;
+  finances.monthlyTax = (finances.weeklyTax * 52) / 12;
+  finances.monthlyNet = finances.monthlyIncome - finances.monthlyTax;
+  finances.monthlyFood = (finances.weeklyFood * 52) / 12;
+  finances.monthlyBills = (finances.weeklyBills * 52) / 12;
+  finances.monthlyRent = (finances.weeklyRent * 52) / 12;
+  finances.monthlySpending = (finances.weeklySpending * 52) / 12;
+  finances.monthlyUnspent = finances.monthlyNet - (finances.monthlyFood + finances.monthlyBills + finances.monthlyRent + finances.monthlySpending)
+  //annually
+  finances.annualIncome = finances.weeklyIncome * 52;
+  finances.annualTax = finances.weeklyTax * 52;
+  finances.annualNet = finances.annualIncome - finances.annualTax;
+  finances.annualFood = finances.weeklyFood * 52;
+  finances.annualBills = finances.weeklyBills * 52;
+  finances.annualRent = finances.weeklyRent * 52;
+  finances.annualSpending = finances.weeklySpending * 52;
+  finances.annualUnspent = finances.annualNet - (finances.annualFood + finances.annualBills + finances.annualRent + finances.annualSpending)
+  //savings
+  finances.currentSavings = getValue("#currentSavings");
+  finances.weeklyContribution = getWeeklyCost("#contributions", "#contributionsFreq");
+  finances.fortnightlyContribution = finances.weeklyContribution * 2;
+  finances.monthlyContribution = (finances.weeklyContribution * 52) / 12;
+  finances.annualContribution = finances.weeklyContribution * 52;
+  finances.sixMonth = finances.currentSavings + (finances.annualContribution / 2);
+  finances.oneYear = finances.currentSavings + finances.annualContribution;
+  finances.fiveYear = finances.currentSavings + (finances.annualContribution * 5);
+  finances.tenYear = finances.currentSavings + (finances.annualContribution * 10);
+  finances.twentyYear = finances.currentSavings + (finances.annualContribution * 20);
+
+}
+
+//-------------Get Elements----------------
+//Graphs
 var graphs = qs("#graphs");
 var button = qs("#button");
+
+//Tax Pie Chart
 var taxPieTextTax = qs("#taxPieTextTax");
 var taxPieTextNet = qs("#taxPieTextNet");
 var taxPieTextAnnual = qs("#taxPieTextAnnual");
+
+//Cost Breakdown Pie Chart
 var breakdownFood = qs("#breakdownFood");
 var breakdownRent = qs("#breakdownRent");
 var breakdownBills = qs("#breakdownBills");
 var breakdownSpending = qs("#breakdownSpending");
 var breakdownUnallow = qs("#breakdownUnallow");
 
-//event listeners
+//Widget
+var widgetContainer = qs('#widgetContainer');
+var incomeWidgetText = qs('#incomeWidgetText');
+var netPayWidgetText = qs('#netPayWidgetText');
+var taxPaidWidgetText = qs('#taxPaidWidgetText');
+var expensesWidgetText = qs('#expensesWidgetText');
+
+//-------------event listeners----------------
 button.addEventListener("click", function (event) {
   event.preventDefault();
 });
 
-//declare variables
+//-------------declare variables----------------
 var currentSavings;
 var regCont;
 var income;
@@ -44,8 +109,8 @@ var unallowHelper;
 
 //functions
 
-function qs(element){
-return document.querySelector(element)
+function qs(element) {
+  return document.querySelector(element)
 }
 
 //get value of input
@@ -140,7 +205,11 @@ function calc() {
   google.charts.setOnLoadCallback(drawPieChart);
   google.charts.setOnLoadCallback(drawTaxPieChart);
   graphs.style.display = "grid";
-  graphs.scrollIntoView();
+  incomeWidgetText.innerHTML = income;
+  netPayWidgetText.innerHTML = income - tax
+  taxPaidWidgetText.innerHTML = taxHelper;
+  expensesWidgetText.innerHTML = food + rent + bills + spending;
+  widgetContainer.scrollIntoView();
 }
 
 //Draw Savings Line Graph
