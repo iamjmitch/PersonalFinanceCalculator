@@ -1,15 +1,14 @@
 //Get Elements
-var graphs = document.querySelector("#graphs");
-var button = document.querySelector("#button");
-var taxPieTextTax = document.querySelector("#taxPieTextTax");
-var taxPieTextNet = document.querySelector("#taxPieTextNet");
-var taxPieTextAnnual = document.querySelector("#taxPieTextAnnual");
-
-var breakdownFood = document.querySelector("#breakdownFood");
-var breakdownRent = document.querySelector("#breakdownRent");
-var breakdownBills = document.querySelector("#breakdownBills");
-var breakdownSpending = document.querySelector("#breakdownSpending");
-var breakdownUnallow = document.querySelector("#breakdownUnallow");
+var graphs = qs("#graphs");
+var button = qs("#button");
+var taxPieTextTax = qs("#taxPieTextTax");
+var taxPieTextNet = qs("#taxPieTextNet");
+var taxPieTextAnnual = qs("#taxPieTextAnnual");
+var breakdownFood = qs("#breakdownFood");
+var breakdownRent = qs("#breakdownRent");
+var breakdownBills = qs("#breakdownBills");
+var breakdownSpending = qs("#breakdownSpending");
+var breakdownUnallow = qs("#breakdownUnallow");
 
 //event listeners
 button.addEventListener("click", function (event) {
@@ -29,7 +28,7 @@ var unspent;
 var sixMonth;
 var oneYear;
 var fiveYear;
-var TenYear;
+var tenYear;
 var twentyYear;
 var taxPaid;
 var netPay;
@@ -45,15 +44,19 @@ var unallowHelper;
 
 //functions
 
+function qs(element){
+return document.querySelector(element)
+}
+
 //get value of input
 function getValue(input) {
-  return parseInt(document.querySelector(input).value);
+  return parseInt(qs(input).value);
 }
 
 //convert costs/expenses to weekly
 function getWeeklyCost(input, freq) {
   var val = getValue(input);
-  var freq = document.querySelector(freq).value;
+  var freq = qs(freq).value;
   var weekly;
   switch (freq) {
     case "weekly":
@@ -112,6 +115,8 @@ function calc() {
   spending = getWeeklyCost("#spending", "#spendingFreq");
   unspent = income - (food + rent + bills + spending);
   netPay = income * 52 - tax;
+
+  //load temp values
   taxHelper = tax;
   netHelper = netPay;
   foodHelper = food;
@@ -124,7 +129,7 @@ function calc() {
   sixMonth = currentSavings + (regCont * 52) / 2;
   oneYear = currentSavings + regCont * 52;
   fiveYear = currentSavings + regCont * 52 * 5;
-  TenYear = currentSavings + regCont * 52 * 10;
+  tenYear = currentSavings + regCont * 52 * 10;
   twentyYear = currentSavings + regCont * 52 * 20;
 
   //chart JS
@@ -146,7 +151,7 @@ function drawLineChart() {
     ["6 Months ", sixMonth],
     ["1 Year", oneYear],
     ["5 Years", fiveYear],
-    ["10 Years", TenYear],
+    ["10 Years", tenYear],
     ["20 Years", twentyYear],
   ]);
 
