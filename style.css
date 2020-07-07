@@ -177,6 +177,7 @@ select {
   margin-left: 10px;
   color: white !important;
 }
+
 option {
   background: #383333;
   color: white !important;
@@ -205,19 +206,23 @@ button#button:hover {
 #widgetContainer {
   width: 100%;
   background: #383333;
-  position:sticky;
+  position: sticky;
   top: 0;
+  z-index: 1000;
+  border-top: 1px solid white;
 }
+
 
 #widget {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   max-width: 1200px;
   margin: 0 auto;
- grid-column-gap: 10px;
+  grid-column-gap: 10px;
 }
 
-#widget div{
+#widget div,
+#backToTop {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -227,36 +232,72 @@ button#button:hover {
   margin: 10px 0;
   background: #3a3737;
   border-radius: 5px;
-  
+  padding: 10px 0;
+
 }
+
+
+
+#widget div select,
+#backToTop {
+  margin: 0;
+  color: #fffffff5 !important;
+  font-size: 25px !important;
+  font-weight: lighter;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+#backToTop {
+  margin: 10px 0;
+  background-color: transparent;
+  border: 2px solid white;
+  font-weight: bolder;
+  transition: 0.2s;
+  font-size: 20px !important;
+}
+
+#backToTop:hover {
+
+  background-color: #ff7a64 !important;
+  color: white;
+  cursor: pointer;
+
+}
+
 
 /* everything needs to be !important for it to work */
 .dollarWidget {
-  border: unset!important;
-  box-shadow: unset!important;
+  border: unset !important;
+  box-shadow: unset !important;
   display: flex;
-  flex-direction: row!important;
-  margin: 0!important;
-  padding: 0!important;
+  flex-direction: row !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .dollarW {
   align-self: flex-start;
-  font-size: 22px!important;
-  color: white!important;
+  font-size: 22px !important;
+  color: white !important;
   margin-top: 2px;
 }
 
-#widget div p{
+#widget div p {
   color: #e0d8c587;
   font-size: 15px;
 }
 
-#incomeWidgetText, #netPayWidgetText, #taxPaidWidgetText, #expensesWidgetText, #unallowcatedWidgetText {
-  color: #fffffff5!important;
-  font-size: 30px!important;
+#incomeWidgetText,
+#netPayWidgetText,
+#taxPaidWidgetText,
+#expensesWidgetText,
+#unallowcatedWidgetText {
+  color: #fffffff5 !important;
+  font-size: 30px !important;
   font-weight: lighter;
   font-family: 'Roboto', sans-serif;
+
 }
 
 
@@ -270,6 +311,7 @@ button#button:hover {
 .page {
   width: 100%;
 }
+
 .grey {
   background-color: #383333;
 }

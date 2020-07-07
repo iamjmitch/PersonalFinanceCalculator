@@ -5,7 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Savings Calculator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=PT+Serif&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat&family=PT+Serif&family=Roboto:ital,wght@1,300&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="./style.css" />
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
@@ -118,53 +120,48 @@
     </div>
   </div>
 
-  <div id="widgetContainer">
-  <div id="widget">
-    <div id="widgetFreq">
-      <select tabindex="-1" name="contributionsFreq" id="contributionsFreq">
-        <option value="weekly">Weekly</option>
-        <option value="fortnightly">Fortnightly</option>
-        <option value="monthly">Monthly</option>
-        <option value="yearly">Yearly</option>
-      </select>
-      <p>Switch between different time periods</p>
+  <div id="widgetContainer" class="boxShadow">
+    <div id="widget">
+      <div id="widgetFreq">
+        <select tabindex="-1" name="contributionsFreq" id="contributionsFreq">
+          <option value="weekly">Weekly</option>
+          <option value="fortnightly">Fortnightly</option>
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+        </select>
+        <p>Change Breakdown Period</p>
+      </div>
+      <div id="incomeWidget">
+        <div class="dollarWidget">
+          <p class='dollarW'>$</p>
+          <p id='incomeWidgetText'>1000</p>
+        </div>
+        <p>Gross Pay</p>
+      </div>
+      <div id="netPayWidget">
+        <div class="dollarWidget">
+          <p class='dollarW'>$</p>
+          <p id='netPayWidgetText'>1000</p>
+        </div>
+        <p>Net Pay</p>
+      </div>
+      <div id="taxPaidWidget">
+        <div class="dollarWidget">
+          <p class='dollarW'>$</p>
+          <p id='taxPaidWidgetText'>1000</p>
+        </div>
+        <p>Tax Paid</p>
+      </div>
+      <div id="expensesWidget">
+        <div class="dollarWidget">
+          <p class='dollarW'>$</p>
+          <p id='expensesWidgetText'>1000</p>
+        </div>
+        <p>Total of expenses</p>
+      </div>
+      <button id='backToTop' onclick='backToTop()'>Change Values</button>
     </div>
-    <div id="incomeWidget">
-      <div class="dollarWidget">
-        <p class='dollarW'>$</p>
-      <p id='incomeWidgetText'>1000</p>
-    </div>
-      <p>Gross Pay</p>
-    </div>
-    <div id="netPayWidget">
-      <div class="dollarWidget">
-        <p class='dollarW'>$</p>
-      <p id='netPayWidgetText'>1000</p>
-    </div>
-      <p>Net Pay</p>
-    </div>
-    <div id="taxPaidWidget">
-      <div class="dollarWidget">
-        <p class='dollarW'>$</p>
-      <p id='taxPaidWidgetText'>1000</p>
-    </div>
-      <p>Tax Paid</p>
-    </div>
-    <div id="expensesWidget">
-      <div class="dollarWidget">
-        <p class='dollarW'>$</p>
-      <p id='expensesWidgetText'>1000</p>
-    </div>
-      <p>Total of expenses</p>
-    </div>
-    <div id="unallowcatedWidget">
-      <div class="dollarWidget">
-        <p class='dollarW'>$</p>
-      <p id='unallowcatedWidgetText'>1000</p></div>
-      <p>Unallowcated Funds</p>
-    </div>
-  </div>
-    
+
 
 
   </div>
