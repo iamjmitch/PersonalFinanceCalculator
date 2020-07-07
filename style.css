@@ -205,6 +205,8 @@ button#button:hover {
 #widgetContainer {
   width: 100%;
   background: #383333;
+  position:sticky;
+  top: 0;
 }
 
 #widget {
