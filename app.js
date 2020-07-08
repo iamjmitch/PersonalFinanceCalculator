@@ -1,4 +1,7 @@
 //-------------Get Elements----------------
+//Inputs
+inputContainer = qs('#inputContainer')
+
 //Graphs
 var graphs = qs("#graphs");
 var button = qs("#button");
@@ -175,6 +178,7 @@ function calc() {
   assignWeekly();
   writeWidgetValues();
   drawGraphs();
+  button.innerHTML = "Update";
   graphs.style.display = "grid";
   widgetContainer.style.display = 'block';
   widgetContainer.scrollIntoView();
@@ -212,4 +216,9 @@ function drawGraphs() {
 
 function decimals(value, qty) {
   return parseFloat(value.toFixed(qty)).toLocaleString();
+}
+
+function backToTop() {
+  inputContainer.scrollIntoView();
+
 }

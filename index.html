@@ -170,7 +170,7 @@
   <div class="page full">
     <div id="graphs">
       <div class="graph costBreakdown boxShadow roundBorder">
-        <h3>Weekly Cost Breakdown</h3>
+        <h3>Expenses Breakdown</h3>
         <div id="PieWrapper">
           <!-- breakdown pie chart -->
           <div id="piechart" class="transparent fullWidth" style="height: 250px; width: 250px;"></div>
@@ -185,14 +185,7 @@
       </div>
       <div class="graph netPayBreakdown boxShadow roundBorder">
         <div class="graphHeading">
-          <select tabindex="-1" name="netPayFreq" id="netPayFreq" class="netPayFreq" dir="rtl"
-            onchange="netPaySwitcher(this.value)">
-            <option value="weekly">Weekly</option>
-            <option value="fortnightly">Fortnightly</option>
-            <option value="monthly">Monthly</option>
-            <option value="yearly" selected>Yearly</option>
-          </select>
-          <h3>Net Pay Breakdown</h3>
+          <h3>Income Breakdown</h3>
         </div>
         <div id="PieWrapper">
           <div id="taxPiechart" class="transparent fullWidth" style="height: 250px; width: 250px;"></div>
