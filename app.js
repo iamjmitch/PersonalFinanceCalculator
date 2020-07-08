@@ -164,16 +164,8 @@ function writeWidgetValues() {
   expensesWidgetText.innerHTML = decimals(totalExpenses, 2);
 }
 
-function assignValues(a, b, c, d, e, f, g, h, i) {
-  tax = a;
-  gross = b;
-  net = c;
-  food = d;
-  rent = e;
-  bills = f;
-  totalExpenses = g
-  spending = h;
-  unallowcated = i;
+function assignValues(n, s, e, t, a, l, o, i, d) {
+  tax = n, gross = s, net = e, food = t, rent = a, bills = l, totalExpenses = o, spending = i, unallowcated = d;
 }
 
 
@@ -190,42 +182,23 @@ function calc() {
 
 function assignWeekly() {
   var f = finances;
-  assignValues(f.weeklyTax, f.weeklyIncome, f.weeklyNet, f.weeklyFood, f.weeklyRent, f.weeklyBills, f.weeklyTotalExpenses, f.weeklySpending, f.weeklyUnspent)
-
+  assignValues(f.weeklyTax, f.weeklyIncome, f.weeklyNet, f.weeklyFood, f.weeklyRent, f.weeklyBills, f.weeklyTotalExpenses, f.weeklySpending, f.weeklyUnspent);
 }
 
-//function to change figures of Tax Pie Chart based of frequency
-function netPaySwitcher(freq) {
-  console.log(`run ${freq}`);
-  switch (freq) {
-    case "weekly":
-      taxHelper = tax / 52;
-      netHelper = netPay / 52;
-      drawTaxPieChart();
-
-      break;
-    case "fortnightly":
-      taxHelper = tax / 26;
-      netHelper = netPay / 26;
-      drawTaxPieChart();
-
-      break;
-    case "monthly":
-      taxHelper = tax / 12;
-      netHelper = netPay / 12;
-      drawTaxPieChart();
-      break;
-    case "yearly":
-      taxHelper = tax;
-      netHelper = netPay;
-      drawTaxPieChart();
-      break;
-
-    default:
-      break;
-  }
+function assignFortnightly() {
+  var f = finances;
+  assignValues(f.fortnightlyTax, f.fortnightlyIncome, f.fortnightlyNet, f.fortnightlyFood, f.fortnightlyRent, f.fortnightlyBills, f.fortnightlyTotalExpenses, f.fortnightlySpending, f.fortnightlyUnspent);
 }
 
+function assignMonthly() {
+  var f = finances;
+  assignValues(f.monthlyTax, f.monthlyIncome, f.monthlyNet, f.monthlyFood, f.monthlyRent, f.monthlyBills, f.monthlyTotalExpenses, f.monthlySpending, f.monthlyUnspent);
+}
+
+function assignAnnual() {
+  var f = finances;
+  assignValues(f.annualTax, f.annualIncome, f.annualNet, f.annualFood, f.annualRent, f.annualBills, f.annualTotalExpenses, f.annualSpending, f.annualUnspent);
+}
 
 function drawGraphs() {
   google.charts.load("current", {
