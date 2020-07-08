@@ -193,28 +193,6 @@ function assignWeekly() {
   assignValues(f.weeklyTax, f.weeklyIncome, f.weeklyNet, f.weeklyFood, f.weeklyRent, f.weeklyBills, f.weeklyTotalExpenses, f.weeklySpending, f.weeklyUnspent)
 
 }
-// //function to produce graphs
-// function calc() {
-//   //calculate all values
-//   updateFinances();
-//   //load temp values
-//   taxHelper = tax;
-//   netHelper = netPay;
-//   foodHelper = food;
-//   rentHelper = rent;
-//   billsHelper = bills;
-//   spendingHelper = spending;
-//   unallowHelper = unspent;
-
-//   //chart JS
-//   google.charts.load("current", {
-//     packages: ["corechart"]
-//   });
-
-// }
-
-//draw Netpay Pie Chart
-
 
 //function to change figures of Tax Pie Chart based of frequency
 function netPaySwitcher(freq) {
