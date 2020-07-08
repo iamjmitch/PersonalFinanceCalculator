@@ -210,6 +210,7 @@ button#button:hover {
   top: 0;
   z-index: 1000;
   border-top: 1px solid white;
+  display: none;
 }
 
 

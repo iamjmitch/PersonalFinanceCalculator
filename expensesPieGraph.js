@@ -1,28 +1,30 @@
 function drawPieChart() {
-    var data = google.visualization.arrayToDataTable([
-      ["Expense", "Cost"],
-      ["Food", foodHelper],
-      ["Rent/Mortgage", rentHelper],
-      ["Bills", billsHelper],
-      ["Spending Money", spendingHelper],
-      ["Un-Allowcated", unallowHelper],
-    ]);
-  
-    var options = {
-      title: "",
-      backgroundColor: "transparent",
-      legend: {
-        position: "none"
-      },
-    };
-  
-    var chart = new google.visualization.PieChart(document.getElementById("piechart"));
-  
-    chart.draw(data, options);
-    breakdownBills.innerHTML = `<b>Bills:</b> $${parseFloat(billsHelper.toFixed(2)).toLocaleString()} `;
-    breakdownFood.innerHTML = `<b>Food:</b> $${parseFloat(foodHelper.toFixed(2)).toLocaleString()} `;
-    breakdownRent.innerHTML = `<b>Rent/Mortgage:</b> $${parseFloat(rentHelper.toFixed(2)).toLocaleString()} `;
-    breakdownSpending.innerHTML = `<b>Spending Money:</b> $${parseFloat(spendingHelper.toFixed(2)).toLocaleString()} `;
-    breakdownUnallow.innerHTML = `<b>Un-Allowcated:</b> $${parseFloat(unallowHelper.toFixed(2)).toLocaleString()} `;
-  
-  }
+  var data = google.visualization.arrayToDataTable([
+    ["Expense", "Cost"],
+    ["Food", food],
+    ["Rent/Mortgage", rent],
+    ["Bills", bills],
+    ["Spending Money", spending],
+    ["Un-Allowcated", unallowcated],
+  ]);
+
+  var options = {
+    title: "",
+    backgroundColor: "transparent",
+    legend: {
+      position: "none"
+    },
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById("piechart"));
+
+  chart.draw(data, options);
+
+  //update graph text
+  breakdownBills.innerHTML = `<b>Bills:</b> $${decimals(bills, 2)} `;
+  breakdownFood.innerHTML = `<b>Food:</b> $${decimals(food, 2)} `;
+  breakdownRent.innerHTML = `<b>Rent/Mortgage:</b> $${decimals(rent, 2)} `;
+  breakdownSpending.innerHTML = `<b>Spending Money:</b> $${decimals(spending, 2)} `;
+  breakdownUnallow.innerHTML = `<b>Un-Allowcated:</b> $${decimals(unallowcated, 2)} `;
+
+}
