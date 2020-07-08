@@ -3,28 +3,27 @@
 inputContainer = qs('#inputContainer')
 
 //Graphs
-var graphs = qs("#graphs");
-var button = qs("#button");
+var graphs = qs("#graphs"),
+  button = qs("#button");
 
 //Tax Pie Chart
-var taxPieTextTax = qs("#taxPieTextTax");
-var taxPieTextNet = qs("#taxPieTextNet");
-var taxPieTextAnnual = qs("#taxPieTextAnnual");
+var taxPieTextTax = qs("#taxPieTextTax"),
+  taxPieTextNet = qs("#taxPieTextNet"),
+  taxPieTextAnnual = qs("#taxPieTextAnnual");
 
 //Cost Breakdown Pie Chart
-var breakdownFood = qs("#breakdownFood");
-var breakdownRent = qs("#breakdownRent");
-var breakdownBills = qs("#breakdownBills");
-var breakdownSpending = qs("#breakdownSpending");
-var breakdownUnallow = qs("#breakdownUnallow");
+var breakdownFood = qs("#breakdownFood"),
+  breakdownRent = qs("#breakdownRent"),
+  breakdownBills = qs("#breakdownBills"),
+  breakdownSpending = qs("#breakdownSpending"),
+  breakdownUnallow = qs("#breakdownUnallow");
 
 //Widget
-var widgetContainer = qs('#widgetContainer');
-var incomeWidgetText = qs('#incomeWidgetText');
-var netPayWidgetText = qs('#netPayWidgetText');
-var taxPaidWidgetText = qs('#taxPaidWidgetText');
-var expensesWidgetText = qs('#expensesWidgetText');
-
+var widgetContainer = qs("#widgetContainer"),
+  incomeWidgetText = qs("#incomeWidgetText"),
+  netPayWidgetText = qs("#netPayWidgetText"),
+  taxPaidWidgetText = qs("#taxPaidWidgetText"),
+  expensesWidgetText = qs("#expensesWidgetText");
 
 //-------------declare Global variables----------------
 var tax,
