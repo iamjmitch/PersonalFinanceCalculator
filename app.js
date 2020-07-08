@@ -47,56 +47,57 @@ var finances = {};
 //function to grab values from inputs and assign to obj.values
 function updateFinances() {
   //weekly
-  finances.weeklyIncome = getWeeklyCost("#income", "#incomeFreq");
-  finances.weeklyTax = calcTax(finances.weeklyIncome) / 52;
-  finances.weeklyNet = finances.weeklyIncome - finances.weeklyTax;
-  finances.weeklyFood = getWeeklyCost("#food", "#foodFreq");
-  finances.weeklyBills = getWeeklyCost("#bills", "#billsFreq");
-  finances.weeklyRent = getWeeklyCost("#rent", "#rentFreq");
-  finances.weeklySpending = getWeeklyCost("#spending", "#spendingFreq");
-  finances.weeklyTotalExpenses = finances.weeklyFood + finances.weeklyBills + finances.weeklyRent + finances.weeklySpending;
-  finances.weeklyUnspent = finances.weeklyNet - (finances.weeklyFood + finances.weeklyBills + finances.weeklyRent + finances.weeklySpending)
+  var f = finances;
+  f.weeklyIncome = getWeeklyCost("#income", "#incomeFreq");
+  f.weeklyTax = calcTax(f.weeklyIncome) / 52;
+  f.weeklyNet = f.weeklyIncome - f.weeklyTax;
+  f.weeklyFood = getWeeklyCost("#food", "#foodFreq");
+  f.weeklyBills = getWeeklyCost("#bills", "#billsFreq");
+  f.weeklyRent = getWeeklyCost("#rent", "#rentFreq");
+  f.weeklySpending = getWeeklyCost("#spending", "#spendingFreq");
+  f.weeklyTotalExpenses = f.weeklyFood + f.weeklyBills + f.weeklyRent + f.weeklySpending;
+  f.weeklyUnspent = f.weeklyNet - (f.weeklyFood + f.weeklyBills + f.weeklyRent + f.weeklySpending)
   //fortnightly
-  finances.fortnightlyIncome = finances.weeklyIncome * 2;
-  finances.fortnightlyTax = finances.weeklyTax * 2;
-  finances.fortnightlyNet = finances.fortnightlyIncome - finances.fortnightlyTax;
-  finances.fortnightlyFood = finances.weeklyFood * 2;
-  finances.fortnightlyBills = finances.weeklyBills * 2;
-  finances.fortnightlyRent = finances.weeklyRent * 2;
-  finances.fortnightlySpending = finances.weeklySpending * 2;
-  finances.fortnightlyTotalExpenses = finances.weeklyTotalExpenses * 2;
-  finances.fortnightlyUnspent = finances.fortnightlyNet - (finances.fortnightlyFood + finances.fortnightlyBills + finances.fortnightlyRent + finances.fortnightlySpending)
+  f.fortnightlyIncome = f.weeklyIncome * 2;
+  f.fortnightlyTax = f.weeklyTax * 2;
+  f.fortnightlyNet = f.fortnightlyIncome - f.fortnightlyTax;
+  f.fortnightlyFood = f.weeklyFood * 2;
+  f.fortnightlyBills = f.weeklyBills * 2;
+  f.fortnightlyRent = f.weeklyRent * 2;
+  f.fortnightlySpending = f.weeklySpending * 2;
+  f.fortnightlyTotalExpenses = f.weeklyTotalExpenses * 2;
+  f.fortnightlyUnspent = f.fortnightlyNet - (f.fortnightlyFood + f.fortnightlyBills + f.fortnightlyRent + f.fortnightlySpending)
   //monthly
-  finances.monthlyIncome = (finances.weeklyIncome * 52) / 12;
-  finances.monthlyTax = (finances.weeklyTax * 52) / 12;
-  finances.monthlyNet = finances.monthlyIncome - finances.monthlyTax;
-  finances.monthlyFood = (finances.weeklyFood * 52) / 12;
-  finances.monthlyBills = (finances.weeklyBills * 52) / 12;
-  finances.monthlyRent = (finances.weeklyRent * 52) / 12;
-  finances.monthlySpending = (finances.weeklySpending * 52) / 12;
-  finances.monthlyTotalExpenses = (finances.weeklyTotalExpenses * 52) / 12;
-  finances.monthlyUnspent = finances.monthlyNet - (finances.monthlyFood + finances.monthlyBills + finances.monthlyRent + finances.monthlySpending)
+  f.monthlyIncome = (f.weeklyIncome * 52) / 12;
+  f.monthlyTax = (f.weeklyTax * 52) / 12;
+  f.monthlyNet = f.monthlyIncome - f.monthlyTax;
+  f.monthlyFood = (f.weeklyFood * 52) / 12;
+  f.monthlyBills = (f.weeklyBills * 52) / 12;
+  f.monthlyRent = (f.weeklyRent * 52) / 12;
+  f.monthlySpending = (f.weeklySpending * 52) / 12;
+  f.monthlyTotalExpenses = (f.weeklyTotalExpenses * 52) / 12;
+  f.monthlyUnspent = f.monthlyNet - (f.monthlyFood + f.monthlyBills + f.monthlyRent + f.monthlySpending)
   //annually
-  finances.annualIncome = finances.weeklyIncome * 52;
-  finances.annualTax = finances.weeklyTax * 52;
-  finances.annualNet = finances.annualIncome - finances.annualTax;
-  finances.annualFood = finances.weeklyFood * 52;
-  finances.annualBills = finances.weeklyBills * 52;
-  finances.annualRent = finances.weeklyRent * 52;
-  finances.annualSpending = finances.weeklySpending * 52;
-  finances.annualTotalExpenses = finances.weeklyTotalExpenses * 52;
-  finances.annualUnspent = finances.annualNet - (finances.annualFood + finances.annualBills + finances.annualRent + finances.annualSpending)
+  f.annualIncome = f.weeklyIncome * 52;
+  f.annualTax = f.weeklyTax * 52;
+  f.annualNet = f.annualIncome - f.annualTax;
+  f.annualFood = f.weeklyFood * 52;
+  f.annualBills = f.weeklyBills * 52;
+  f.annualRent = f.weeklyRent * 52;
+  f.annualSpending = f.weeklySpending * 52;
+  f.annualTotalExpenses = f.weeklyTotalExpenses * 52;
+  f.annualUnspent = f.annualNet - (f.annualFood + f.annualBills + f.annualRent + f.annualSpending)
   //savings
-  finances.currentSavings = getValue("#currentSavings");
-  finances.weeklyContribution = getWeeklyCost("#contributions", "#contributionsFreq");
-  finances.fortnightlyContribution = finances.weeklyContribution * 2;
-  finances.monthlyContribution = (finances.weeklyContribution * 52) / 12;
-  finances.annualContribution = finances.weeklyContribution * 52;
-  finances.sixMonth = finances.currentSavings + (finances.annualContribution / 2);
-  finances.oneYear = finances.currentSavings + finances.annualContribution;
-  finances.fiveYear = finances.currentSavings + (finances.annualContribution * 5);
-  finances.tenYear = finances.currentSavings + (finances.annualContribution * 10);
-  finances.twentyYear = finances.currentSavings + (finances.annualContribution * 20);
+  f.currentSavings = getValue("#currentSavings");
+  f.weeklyContribution = getWeeklyCost("#contributions", "#contributionsFreq");
+  f.fortnightlyContribution = f.weeklyContribution * 2;
+  f.monthlyContribution = (f.weeklyContribution * 52) / 12;
+  f.annualContribution = f.weeklyContribution * 52;
+  f.sixMonth = f.currentSavings + (f.annualContribution / 2);
+  f.oneYear = f.currentSavings + f.annualContribution;
+  f.fiveYear = f.currentSavings + (f.annualContribution * 5);
+  f.tenYear = f.currentSavings + (f.annualContribution * 10);
+  f.twentyYear = f.currentSavings + (f.annualContribution * 20);
 }
 //functions
 function qs(element) {
