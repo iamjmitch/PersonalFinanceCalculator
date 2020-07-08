@@ -1,3 +1,33 @@
+//-------------Get Elements----------------
+//Graphs
+var graphs = qs("#graphs");
+var button = qs("#button");
+
+//Tax Pie Chart
+var taxPieTextTax = qs("#taxPieTextTax");
+var taxPieTextNet = qs("#taxPieTextNet");
+var taxPieTextAnnual = qs("#taxPieTextAnnual");
+
+//Cost Breakdown Pie Chart
+var breakdownFood = qs("#breakdownFood");
+var breakdownRent = qs("#breakdownRent");
+var breakdownBills = qs("#breakdownBills");
+var breakdownSpending = qs("#breakdownSpending");
+var breakdownUnallow = qs("#breakdownUnallow");
+
+//Widget
+var widgetContainer = qs('#widgetContainer');
+var incomeWidgetText = qs('#incomeWidgetText');
+var netPayWidgetText = qs('#netPayWidgetText');
+var taxPaidWidgetText = qs('#taxPaidWidgetText');
+var expensesWidgetText = qs('#expensesWidgetText');
+
+//-------------event listeners----------------
+button.addEventListener("click", function (event) {
+  event.preventDefault();
+});
+
+// objects
 var finances = {};
 
 function updateFinances() {
@@ -51,66 +81,26 @@ function updateFinances() {
 
 }
 
-//-------------Get Elements----------------
-//Graphs
-var graphs = qs("#graphs");
-var button = qs("#button");
 
-//Tax Pie Chart
-var taxPieTextTax = qs("#taxPieTextTax");
-var taxPieTextNet = qs("#taxPieTextNet");
-var taxPieTextAnnual = qs("#taxPieTextAnnual");
+//-------------declare Global variables----------------
+var tax,
+  gross,
+  net,
+  food,
+  rent,
+  bills,
+  spending,
+  unallowcated,
+  sixMonth,
+  oneYear,
+  fiveYear,
+  tenYear,
+  twentyYear;
 
-//Cost Breakdown Pie Chart
-var breakdownFood = qs("#breakdownFood");
-var breakdownRent = qs("#breakdownRent");
-var breakdownBills = qs("#breakdownBills");
-var breakdownSpending = qs("#breakdownSpending");
-var breakdownUnallow = qs("#breakdownUnallow");
-
-//Widget
-var widgetContainer = qs('#widgetContainer');
-var incomeWidgetText = qs('#incomeWidgetText');
-var netPayWidgetText = qs('#netPayWidgetText');
-var taxPaidWidgetText = qs('#taxPaidWidgetText');
-var expensesWidgetText = qs('#expensesWidgetText');
-
-//-------------event listeners----------------
-button.addEventListener("click", function (event) {
-  event.preventDefault();
-});
-
-//-------------declare variables----------------
-var currentSavings;
-var regCont;
-var income;
-var tax;
-var food;
-var rent;
-var bills;
-var spending;
-var unspent;
-var sixMonth;
-var oneYear;
-var fiveYear;
-var tenYear;
-var twentyYear;
-var taxPaid;
-var netPay;
-
-//temp value holders
-var taxHelper;
-var netHelper;
-var foodHelper;
-var rentHelper;
-var billsHelper;
-var spendingHelper;
-var unallowHelper;
 
 //functions
-
 function qs(element) {
-  return document.querySelector(element)
+  return document.querySelector(element);
 }
 
 //get value of input
@@ -167,20 +157,33 @@ function calcTax(inc) {
   return taxPaid;
 }
 
+function writeValues() {
+  incomeWidgetText.innerHTML = income;
+  netPayWidgetText.innerHTML = income - tax
+  taxPaidWidgetText.innerHTML = taxHelper;
+  expensesWidgetText.innerHTML = food + rent + bills + spending;
+}
+
+function assignValues(a, b, c, d, e, f, g, h, i, j, k, l, m) {
+  tax = a;
+  gross = b;
+  net = c;
+  food = d;
+  rent = e;
+  bills = f;
+  spending = g;
+  unallowcated = h;
+  sixMonth = i;
+  oneYear = j;
+  fiveYear = k;
+  tenYear = l;
+  twentyYear = m;
+}
+
 //function to produce graphs
 function calc() {
-  //Inputs
-  currentSavings = getValue("#currentSavings");
-  regCont = getWeeklyCost("#contributions", "#contributionsFreq");
-  income = getWeeklyCost("#income", "#incomeFreq");
-  tax = calcTax(income);
-  food = getWeeklyCost("#food", "#foodFreq");
-  rent = getWeeklyCost("#rent", "#rentFreq");
-  bills = getWeeklyCost("#bills", "#billsFreq");
-  spending = getWeeklyCost("#spending", "#spendingFreq");
-  unspent = income - (food + rent + bills + spending);
-  netPay = income * 52 - tax;
-
+  //calculate all values
+  updateFinances();
   //load temp values
   taxHelper = tax;
   netHelper = netPay;
@@ -190,114 +193,15 @@ function calc() {
   spendingHelper = spending;
   unallowHelper = unspent;
 
-  // Maths
-  sixMonth = currentSavings + (regCont * 52) / 2;
-  oneYear = currentSavings + regCont * 52;
-  fiveYear = currentSavings + regCont * 52 * 5;
-  tenYear = currentSavings + regCont * 52 * 10;
-  twentyYear = currentSavings + regCont * 52 * 20;
-
   //chart JS
   google.charts.load("current", {
     packages: ["corechart"]
   });
-  google.charts.setOnLoadCallback(drawLineChart);
-  google.charts.setOnLoadCallback(drawPieChart);
-  google.charts.setOnLoadCallback(drawTaxPieChart);
-  graphs.style.display = "grid";
-  incomeWidgetText.innerHTML = income;
-  netPayWidgetText.innerHTML = income - tax
-  taxPaidWidgetText.innerHTML = taxHelper;
-  expensesWidgetText.innerHTML = food + rent + bills + spending;
-  widgetContainer.scrollIntoView();
-}
-
-//Draw Savings Line Graph
-function drawLineChart() {
-  var data = google.visualization.arrayToDataTable([
-    ["Year", `Savings @ $${regCont} Per Week`],
-    ["Now", currentSavings],
-    ["6 Months ", sixMonth],
-    ["1 Year", oneYear],
-    ["5 Years", fiveYear],
-    ["10 Years", tenYear],
-    ["20 Years", twentyYear],
-  ]);
-
-  var options = {
-    title: "",
-    pointSize: 7,
-    pointShape: "circle",
-    colors: ["#ff7a64", "#ff7a64"],
-    vAxis: {
-      format: "$#,###"
-    },
-    legend: {
-      position: "bottom"
-    },
-    backgroundColor: "transparent",
-  };
-
-  var chart = new google.visualization.LineChart(document.getElementById("curve_chart"));
-
-  chart.draw(data, options);
-}
-
-//draw cost breakdown pie chart
-function drawPieChart() {
-  var data = google.visualization.arrayToDataTable([
-    ["Expense", "Cost"],
-    ["Food", foodHelper],
-    ["Rent/Mortgage", rentHelper],
-    ["Bills", billsHelper],
-    ["Spending Money", spendingHelper],
-    ["Un-Allowcated", unallowHelper],
-  ]);
-
-  var options = {
-    title: "",
-    backgroundColor: "transparent",
-    legend: {
-      position: "none"
-    },
-  };
-
-  var chart = new google.visualization.PieChart(document.getElementById("piechart"));
-
-  chart.draw(data, options);
-  breakdownBills.innerHTML = `<b>Bills:</b> $${parseFloat(billsHelper.toFixed(2)).toLocaleString()} `;
-  breakdownFood.innerHTML = `<b>Food:</b> $${parseFloat(foodHelper.toFixed(2)).toLocaleString()} `;
-  breakdownRent.innerHTML = `<b>Rent/Mortgage:</b> $${parseFloat(rentHelper.toFixed(2)).toLocaleString()} `;
-  breakdownSpending.innerHTML = `<b>Spending Money:</b> $${parseFloat(spendingHelper.toFixed(2)).toLocaleString()} `;
-  breakdownUnallow.innerHTML = `<b>Un-Allowcated:</b> $${parseFloat(unallowHelper.toFixed(2)).toLocaleString()} `;
 
 }
-
 
 //draw Netpay Pie Chart
-function drawTaxPieChart() {
-  var data = google.visualization.arrayToDataTable([
-    ["Category", "Dollar"],
-    ["Tax", taxHelper],
-    ["Net Pay", netHelper],
-  ]);
 
-  var options = {
-    title: "",
-    backgroundColor: "transparent",
-    legend: {
-      position: "none"
-    },
-  };
-
-  var chart = new google.visualization.PieChart(document.getElementById("taxPiechart"));
-  //   var a = parseFloat(taxHelper.toFixed(2)).toLocaleString();
-  //   var b = parseFloat(netHelper.toFixed(2)).toLocaleString();
-  chart.draw(data, options);
-  taxPieTextTax.innerHTML = `<b>Tax:</b> $${parseFloat(taxHelper.toFixed(2)).toLocaleString()} `;
-  taxPieTextNet.innerHTML = `<b>Net Pay:</b> $${parseFloat(netHelper.toFixed(2)).toLocaleString()}`;
-  taxPieTextAnnual.innerHTML = `<b>Annual Salary:</b> $${parseFloat((income * 52).toFixed(2)).toLocaleString()}`;
-}
 
 //function to change figures of Tax Pie Chart based of frequency
 function netPaySwitcher(freq) {
@@ -330,3 +234,12 @@ function netPaySwitcher(freq) {
       break;
   }
 }
+
+
+
+// google.charts.setOnLoadCallback(drawLineChart);
+//   google.charts.setOnLoadCallback(drawPieChart);
+//   google.charts.setOnLoadCallback(drawTaxPieChart);
+//   graphs.style.display = "grid";
+
+//   widgetContainer.scrollIntoView();
