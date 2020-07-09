@@ -1,8 +1,8 @@
 function drawTaxPieChart() {
     var data = google.visualization.arrayToDataTable([
         ["Category", "Dollar"],
-        ["Tax", parseInt(decimals(tax, 0))],
-        ["Net Pay", parseInt(decimals(net, 0))],
+        ["Tax", parseInt(decimals(tax, 0, false))],
+        ["Net Pay", parseInt(decimals(net, 0, false))],
         //graph doesn't generate properly without parseInt
     ]);
 

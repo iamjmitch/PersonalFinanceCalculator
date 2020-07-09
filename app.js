@@ -23,7 +23,8 @@ var widgetContainer = qs("#widgetContainer"),
   incomeWidgetText = qs("#incomeWidgetText"),
   netPayWidgetText = qs("#netPayWidgetText"),
   taxPaidWidgetText = qs("#taxPaidWidgetText"),
-  expensesWidgetText = qs("#expensesWidgetText");
+  expensesWidgetText = qs("#expensesWidgetText"),
+  contributionsFreqWidget = qs('#contributionsFreq2');
 
 //-------------declare Global variables----------------
 var tax,
@@ -111,6 +112,9 @@ function getValue(input) {
   return parseInt(qs(input).value);
 }
 
+
+
+
 //convert costs/expenses to weekly
 function getWeeklyCost(input, freq) {
   var val = getValue(input);
@@ -164,7 +168,7 @@ function writeWidgetValues() {
   incomeWidgetText.innerHTML = decimals(gross, 0);
   netPayWidgetText.innerHTML = decimals(net, 0);
   taxPaidWidgetText.innerHTML = decimals(tax, 0);
-  expensesWidgetText.innerHTML = decimals(totalExpenses, 2);
+  expensesWidgetText.innerHTML = decimals(totalExpenses, 0);
 }
 
 function assignValues(n, s, e, t, a, l, o, i, d) {
@@ -174,13 +178,36 @@ function assignValues(n, s, e, t, a, l, o, i, d) {
 
 function calc() {
   updateFinances();
-  assignWeekly();
+  freqChange(contributionsFreqWidget.value);
   writeWidgetValues();
   drawGraphs();
   button.innerHTML = "Update";
   graphs.style.display = "grid";
   widgetContainer.style.display = 'block';
   widgetContainer.scrollIntoView();
+
+}
+
+function freqChange(val) {
+  switch (val) {
+    case "weekly":
+      assignWeekly();
+      break;
+    case "fortnightly":
+      assignFortnightly();
+      break;
+    case "monthly":
+      assignMonthly();
+      break;
+    case "yearly":
+      assignAnnual();
+      break;
+    default:
+      assignWeekly();
+      break;
+  }
+  drawGraphs();
+  writeWidgetValues();
 
 }
 
@@ -213,8 +240,13 @@ function drawGraphs() {
   google.charts.setOnLoadCallback(drawTaxPieChart);
 }
 
-function decimals(value, qty) {
-  return parseFloat(value.toFixed(qty)).toLocaleString();
+function decimals(value, qty, toLocale) {
+  //automatically set toLocale to true unless defined 
+  toLocale = typeof toLocale !== 'undefined' ? toLocale : true;
+  if (toLocale === true) {
+    return parseFloat(value.toFixed(qty)).toLocaleString();
+  }
+  return parseFloat(value.toFixed(qty));
 }
 
 function backToTop() {

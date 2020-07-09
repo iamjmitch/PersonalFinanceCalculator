@@ -21,10 +21,10 @@ function drawPieChart() {
   chart.draw(data, options);
 
   //update graph text
-  breakdownBills.innerHTML = `<b>Bills:</b> $${decimals(bills, 2)} `;
-  breakdownFood.innerHTML = `<b>Food:</b> $${decimals(food, 2)} `;
-  breakdownRent.innerHTML = `<b>Rent/Mortgage:</b> $${decimals(rent, 2)} `;
-  breakdownSpending.innerHTML = `<b>Spending Money:</b> $${decimals(spending, 2)} `;
-  breakdownUnallow.innerHTML = `<b>Un-Allowcated:</b> $${decimals(unallowcated, 2)} `;
+  breakdownBills.innerHTML = `<b>Bills:</b> $${decimals(bills, 0)} `;
+  breakdownFood.innerHTML = `<b>Food:</b> $${decimals(food, 0)} `;
+  breakdownRent.innerHTML = `<b>Rent/Mortgage:</b> $${decimals(rent, 0)} `;
+  breakdownSpending.innerHTML = `<b>Spending Money:</b> $${decimals(spending, 0)} `;
+  breakdownUnallow.innerHTML = `<b>Un-Allowcated:</b> $${decimals(unallowcated, 0)} `;
 
 }
