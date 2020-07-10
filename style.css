@@ -469,3 +469,58 @@ button#button:hover {
   color: black !important;
   font-weight: bolder;
 }
+
+
+
+
+
+
+
+
+
+/* checkbox Styling */
+.checkbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin-top: 15px;
+  border: 1px solid white;
+  padding-top: 10px;
+}
+
+.checkbox div {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  padding-bottom: 10px;
+  margin-left: 30px;
+}
+
+.checkboxOptions p {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.checkbox p {
+  color: white;
+}
+
+.checkbox p:first-of-type {
+  margin-right: 20px;
+}
+
+.checkbox input {
+  width: 40px;
+  margin-top: 2px;
+}
+
+#superA {
+  display: none;
+}
+
+.spacer input,
+.spacer p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}

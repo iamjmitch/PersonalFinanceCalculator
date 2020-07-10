@@ -1,6 +1,10 @@
 //-------------Get Elements----------------
 //Inputs
-inputContainer = qs('#inputContainer')
+var inputContainer = qs('#inputContainer'),
+  checkSuper = qs('#checkSuper'),
+  checkHECS = qs('#checkHECS'),
+  superA = qs('#superA');
+
 
 //Graphs
 var graphs = qs("#graphs"),
@@ -35,7 +39,8 @@ var tax,
   bills,
   spending,
   unallowcated,
-  totalExpenses;
+  totalExpenses,
+  includeSuper;
 
 
 //-------------event listeners----------------
@@ -192,4 +197,14 @@ function decimals(value, qty, toLocale) {
 function backToTop() {
   inputContainer.scrollIntoView();
 
+}
+
+function checkboxSuper(i) {
+  if (i.checked === true) {
+    superA.style.display = 'flex';
+    includeSuper = true;
+  } else {
+    superA.style.display = 'none';
+    includeSuper = false;
+  }
 }
