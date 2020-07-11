@@ -43,21 +43,23 @@
             <div class="spacer">
             </div>
           </div>
-          <div class="checkbox">
-            <div class="checkboxOptions">
+          <div class="checkbox" id='checkbox' onclick="toggleOptions()">
+            <div id="checkboxOptions">
               <p>Options</p>
             </div>
-            <div>
-              <input type="checkbox" id="checkHECS" onchange="checkboxHECS(this)">
-              <p>Student Loans Repayment</p>
-            </div>
-            <div>
-              <input type="checkbox" id="checkSuper" onchange="checkboxSuper(this)">
-              <p>Superannuation Included In Income</p>
-            </div>
-            <div>
-              <input type="checkbox" id="checkSuper" onchange="checkboxSuper(this)">
-              <p>Custom Superannuation Percentage</p>
+            <div id="optionsContainer">
+              <div>
+                <input type="checkbox" id="checkHECS" onchange="checkboxHECS(this)">
+                <p>Student Loans Repayment</p>
+              </div>
+              <div>
+                <input type="checkbox" id="checkSuper" onchange="checkboxSuper(this)">
+                <p>Superannuation Included In Income</p>
+              </div>
+              <div>
+                <input type="checkbox" id="checkSuper" onchange="checkboxSuper(this)">
+                <p>Custom Superannuation Percentage</p>
+              </div>
             </div>
 
           </div>
@@ -228,7 +230,7 @@
       </div>
     </div>
   </div>
-  <script src="./app.js"></script>
+  <script type="application/javascript" src=" ./app.js"> </script>
   <script src="./expensesPieGraph.js"></script>
   <script src="./lineGraph.js"></script>
   <script src="./taxBreakdownPieChart.js"></script>

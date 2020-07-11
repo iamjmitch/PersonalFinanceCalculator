@@ -22,4 +22,3 @@ function drawTaxPieChart() {
     taxPieTextNet.innerHTML = `<b>Net Pay:</b> $${decimals(net, 0)}`;
     taxPieTextAnnual.innerHTML = `<b>Annual Salary:</b> $${decimals(finances.annualIncome, 0)}`;
 }
-1

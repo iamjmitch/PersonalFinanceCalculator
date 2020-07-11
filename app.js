@@ -87,21 +87,23 @@ function getWeeklyCost(input, freq) {
 
 //calculate tax payable on total income
 function calcTax(inc) {
-  var income = inc * 52;
+  var income = inc * 52,
+    base, remaining;
+
   if (income >= 180001) {
-    var base = 54097;
-    var remaining = income - 180001;
+    base = 54097;
+    remaining = income - 180001;
     taxPaid = base + remaining * 0.45;
   } else if (income >= 90001) {
-    var base = 20797;
-    var remaining = income - 90001;
+    base = 20797;
+    remaining = income - 90001;
     taxPaid = base + remaining * 0.37;
   } else if (income >= 37001) {
-    var base = 3572;
-    var remaining = income - 37001;
+    base = 3572;
+    remaining = income - 37001;
     taxPaid = base + remaining * 0.325;
   } else if (income >= 18201) {
-    var remaining = income - 18201;
+    remaining = income - 18201;
     taxPaid = base + remaining * 0.19;
   } else {
     taxPaid = income;
@@ -207,4 +209,51 @@ function checkboxSuper(i) {
     superA.style.display = 'none';
     includeSuper = false;
   }
+}
+
+function toggleOptions() {
+  console.log('work');
+  var optionList = document.querySelectorAll('#optionsContainer div');
+  if (optionList[0].style.display == "flex") {
+    for (var i = 0; i < optionList.length; i++) {
+      optionList[i].style.display = 'none';
+    }
+    shrinkCheckbox();
+  } else {
+    for (var i = 0; i < optionList.length; i++) {
+      optionList[i].style.display = 'flex';
+    }
+    expandCheckbox();
+  }
+}
+
+function expandCheckbox() {
+  var optionHeading = qs('#checkboxOptions p')
+  checkbox = qs('#checkbox');
+
+  optionHeading.style.paddingBottom = '10px';
+  optionHeading.style.textAlign = 'left';
+  checkbox.style.width = '100%';
+  checkbox.style.paddingLeft = '45px';
+  checkbox.style.alignSelf = 'left';
+  checkbox.style.marginLeft = '10px';
+  checkbox.style.marginRight = '10px';
+
+
+}
+
+function shrinkCheckbox() {
+  var optionHeading = qs('#checkboxOptions p')
+  checkbox = qs('#checkbox');
+
+  optionHeading.style.paddingBottom = '0px';
+  optionHeading.style.textAlign = 'center';
+  optionHeading.style.margin = '0';
+  checkbox.style.width = '100px';
+  checkbox.style.paddingLeft = '0';
+  checkbox.style.alignSelf = 'center';
+  checkbox.style.marginLeft = '0px';
+  checkbox.style.marginRight = '0px';
+
+
 }
