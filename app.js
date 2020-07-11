@@ -63,7 +63,7 @@ function getValue(input) {
 //convert costs/expenses to weekly
 function getWeeklyCost(input, freq) {
   var val = getValue(input);
-  var freq = qs(freq).value;
+  freq = qs(freq).value;
   var weekly;
   switch (freq) {
     case "weekly":
@@ -220,15 +220,15 @@ function toggleOptions() {
     }
     shrinkCheckbox();
   } else {
-    for (var i = 0; i < optionList.length; i++) {
-      optionList[i].style.display = 'flex';
+    for (var j = 0; j < optionList.length; j++) {
+      optionList[j].style.display = 'flex';
     }
     expandCheckbox();
   }
 }
 
 function expandCheckbox() {
-  var optionHeading = qs('#checkboxOptions p')
+  var optionHeading = qs('#checkboxOptions p');
   checkbox = qs('#checkbox');
 
   optionHeading.style.paddingBottom = '10px';
@@ -243,7 +243,7 @@ function expandCheckbox() {
 }
 
 function shrinkCheckbox() {
-  var optionHeading = qs('#checkboxOptions p')
+  var optionHeading = qs('#checkboxOptions p');
   checkbox = qs('#checkbox');
 
   optionHeading.style.paddingBottom = '0px';
